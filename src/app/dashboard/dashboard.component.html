@@ -1,0 +1,48 @@
+<mat-sidenav-container fullscreen >
+  <mat-sidenav #sidenav mode="push">
+    <mat-toolbar>
+      <span>Menú</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      @for (item of sideBarItem; track $index) {
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item.label}}
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          @for (subitem of item.submodulos; track $index) {
+            <p [routerLink]="subitem.url">{{subitem.label}}</p>
+            <!-- <a [routerLink]="subitem.url" routerLinkActive="primary">{{subitem.label}}</a><br> -->
+          }
+
+
+        </mat-expansion-panel>
+      }
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <span class="material-icons md-dark">face</span>
+    <button mat-button>
+
+      Carlo diaz
+    </button>
+  </mat-toolbar>
+  <div class="container p-2">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>
+
+
